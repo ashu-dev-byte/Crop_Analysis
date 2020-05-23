@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link href="style.css" rel="stylesheet"> -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>Crop Prediction analysis</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .header {
+            height: 750px;
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding-top: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .login-btn {
+            width: 100px;
+            padding: 8px 0;
+            outline: none !important;
+            border: 2px solid white;
+            border-radius: 50px;
+            background: transparent;
+            color: white;
+            float: right;
+        }
+
+        .one {
+            padding: 265px 0 0 0;
+
+        }
+
+        .input-group {
+            width: 90%;
+            max-width: 500px;
+            border-radius: 50px;
+            background-color: white;
+            margin: auto;
+            padding: 2px;
+        }
+
+        .form-control {
+            border: 0 !important;
+            border-radius: 30px !important;
+            margin: 2px;
+            box-shadow: none !important;
+        }
+
+        .input-group-text {
+            width: 100px;
+            background-image: linear-gradient(forestgreen, rgb(185, 228, 185));
+            border: 0 !important;
+            color: white !important;
+            padding: 0 25px !important;
+            border-radius: 30px !important;
+            box-shadow: none !important;
+
+        }
+
+        .features {
+            padding: 100px 0;
+        }
+
+        .feature-img img {
+            width: 100%;
+        }
+
+        .ratings {
+            color: gold;
+        }
+
+        .price {
+            color: forestgreen;
+            padding: 7px
+        }
+
+        .summary {
+            color: grey;
+            padding: 15px
+        }
+
+        .placename {
+            color: grey;
+            font-family: cursive;
+            padding: 15px;
+
+        }
+
+        .feature-box {
+            box-shadow: 0 0 10px 1px rgba(37, 73, 214, 0.18);
+            margin-bottom: 50px;
+
+        }
+
+        .feature-box:hover {
+            border: 2px solid orange !important;
+            transform: scale(1.1);
+            transition: 0.6s;
+        }
+
+        .gallery {
+            padding: 100px 0;
+            background-color: lightgray;
+        }
+
+        .gallery-box img {
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 1s;
+        }
+
+        .gallery-box img:hover {
+            transform: scale(1.1);
+        }
+
+        .gallery-box h4 {
+
+            font-weight: 600;
+            width: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+
+        .gallery-box {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .banner {
+            height: 650px;
+            background:linear-gradient(to right, orange, brown);
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            padding-top: 7%;
+        }
+
+        .banner-highlights {
+            padding: 70px 0;
+            background: rgba(0, 0, 0, 0.7);
+            text-align: center;
+            color: white;
+        }
+
+        .book-btn {
+            width: 130px;
+            padding: 8px 0;
+            outline: none !important;
+            border: 2px solid white;
+            border-radius: 50px;
+            background: transparent;
+            color: white;
+            margin-top: 20px;
+
+        }
+
+        .users-feedback {
+            padding: 100px 0;
+
+        }
+
+        .users-review {
+            text-align: center;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 100, 0.2);
+            padding-bottom: 50px;
+        }
+
+        .users-review:hover {
+            border: 2px solid orange;
+            transition-duration: 0.4s;
+            transform: scale(1.1);
+        }
+
+        .users-review:hover ~ .rumble {
+            border: 2px solid orange;
+            transition-duration: 0.4s;
+            transform: scale(1.3);
+        }
+
+        .users-review p {
+            padding: 50px 10px 10px 10px;
+        }
+
+        .users-feedback img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            position: relative;
+            margin: -30px 0 20px 40%;
+        }
+
+        .users-review p::before {
+            content: '\201d';
+            display: block;
+            position: absolute;
+            font-size: 100px;
+            color: cornflowerblue;
+            font-family: sans-serif;
+            left: 44%;
+            top: -20px;
+        }
+
+        .feedback {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('http://getwallpapers.com/wallpaper/full/3/6/f/1289761-popular-farm-wallpaper-1920x1080-images.jpg#.XZ4vxGOkrlU.link');
+            padding-top: 85px;
+            background-attachment: fixed;
+        }
+
+        .feedback {
+            padding: 100px 0;
+        }
+
+        .h1h1 {
+            font-family: cursive;
+            font-weight: 300;
+            font-size: 60px;
+            color: seashell;
+            padding-left: 160px;
+        }
+
+        .h4h4 {
+            font-family: cursive;
+            font-weight: 400;
+            font-size: 20px;
+            color: white;
+            line-height: 1.5;
+            padding-left: 450px;
+        }
+
+
+        input:focus~label,
+        textarea:focus~label,
+        input:valid~label,
+        textarea:valid~label {
+            font-size: 0.75em;
+            color: gray;
+            top: -5px;
+            -webkit-transition: all 0.225s ease;
+            transition: all 0.225s ease;
+        }
+
+        .styled-input {
+            float: left;
+            width: 293px;
+            margin: 1rem 0;
+            position: relative;
+            border-radius: 4px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .styled-input {
+                width: 100%;
+            }
+        }
+
+        .styled-input label {
+            color: #999;
+            padding: 1.3rem 30px 1rem 30px;
+            position: absolute;
+            top: 10px;
+            left: 0;
+            -webkit-transition: all 0.25s ease;
+            transition: all 0.25s ease;
+            pointer-events: none;
+        }
+
+        .styled-input.wide {
+            width: 650px;
+            max-width: 100%;
+        }
+
+        input,
+        textarea {
+            padding: 30px;
+            border: 0;
+            width: 100%;
+            font-size: 1rem;
+            background-color: white;
+            color: black;
+            border-radius: 4px;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: 0;
+        }
+
+        input:focus~span,
+        textarea:focus~span {
+            width: 100%;
+            -webkit-transition: all 0.075s ease;
+            transition: all 0.075s ease;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 15em;
+        }
+
+        .input-container {
+            width: 650px;
+            max-width: 100%;
+            margin: 20px auto 25px auto;
+        }
+
+        .submit-btn {
+            width: 130px;
+            padding: 8px 0;
+            outline: none !important;
+            border: 2px solid white;
+            border-radius: 50px;
+            background: transparent;
+            color: white;
+            margin-top: 20px;
+            text-align: center;
+            margin-left: 520px;
+        }
+
+        @media (max-width: 768px) {
+            .submit-btn {
+                width: 100%;
+                float: none;
+                text-align: center;
+            }
+        }
+
+        input[type=checkbox]+label {
+            color: #ccc;
+            font-style: italic;
+        }
+
+        input[type=checkbox]:checked+label {
+            color: #f00;
+            font-style: normal;
+        }
+
+        .btnmsg {
+            width: 130px;
+            padding: 8px 0;
+            outline: none !important;
+            border: 2px solid white;
+            border-radius: 50px;
+            background: transparent;
+            color: white;
+            margin-top: 20px;
+            text-align: center;
+            margin-left: 520px;
+        }
+        .submit-btn {
+            width: 130px;
+            padding: 8px 0;
+            outline: none !important;
+            border: 2px solid white;
+            border-radius: 50px;
+            background: transparent;
+            font-size: larger;
+            color: white;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.1);
+            transition-duration: 0.5s;
+        }
+        #share1:hover
+        #sharecrop1:hover{
+            cursor: pointer;
+        }
+        #share,
+        #sharecrop1{
+            display: none;
+        }
+        #share1,
+        #sharecrop1{
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="header"
+        style="background-image:linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35)),url('https://images.pexels.com/photos/207247/pexels-photo-207247.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')">
+        <!-- <div class="container">
+            <button type="button" class="login-btn">Login</button>
+        </div> -->
+        <div class="one">
+            <h1 style="font-family: cursive; zoom: 200%;font-size: 55px">Adding Green to your Life.</h1>
+            <p style="font-family: cursive; zoom: 200%;">Cultivating Ideas for Growth.</p>
+        </div>
+        <!-- <div class="input-group">
+            <input type="text" class="form-control" placeholder="
+            Search your State, city and your district">
+            <button type="submit" class="input-group-text btn">Search</button>
+        </div> -->
+    </section>
+
+    <section class="features">
+        <h1 style="text-align: center;font-size: 52px; padding-bottom: 30px; font-family: cursive">Top 3 Areas for farming</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="feature-img">
+                            <img
+                                src="https://static.agcanada.com/wp-content/uploads/sites/5/2017/06/Spring-wheat-flowering-lkaskiw.jpg">
+                        </div>
+                        <span class="price"><strong>GDP</strong> ₹15.80 lakh crore</span> &nbsp
+                        <span class="ratings">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                        </span>
+                        <div class="placename">
+                            <h3>Uttar Pradesh</h3>
+                        </div>
+                        <div class="summary">
+                            <p>
+                                Agriculture is called the backbone of economy of Uttar Pradesh. Uttar Pradesh is the top
+                                producer of food grain in Uttar Pradesh.
+                                Agriculture provides around 59% employment to the residents of the state.
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="feature-img">
+                            <img src="https://www.tripuraindia.in/assets/upload_images/news_images/Cashew-nut.jpg" style="height: 234px">
+                        </div>
+                        <span class="price"><strong>GDP</strong> ₹9.62 lakh crore</span> &nbsp
+                        <span class="ratings">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+
+
+                        </span>
+                        <div class="placename">
+                            <h3>Madhya Pradesh</h3>
+                        </div>
+                        <div class="summary">
+                            <p>
+                                The state is also a major producer of linseed, mustard, sunflower and safflower.
+                                Topographical variations enable the state to grow a wide range of cereals, pulses, and
+                                cash crops.
+                                <!-- besides being home to myriad varieties of plant species, both in forest areas and outside. -->
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="feature-img">
+                            <img src="https://media.dhakatribune.com/uploads/2019/02/web-paddy-1550984376307.jpg"
+                                style="height: 234px">
+                        </div>
+                        <span class="price"><strong>GDP</strong> ₹5.78 lakh crore</span> &nbsp
+                        <span class="ratings">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+
+
+
+
+                        </span>
+                        <div class="placename">
+                            <h3>Punjab</h3>
+                        </div>
+                        <div class="summary">
+                            <p>
+
+                                The principal crops of Punjab are barley, wheat, rice, maize and sugarcane.
+                                Among the fodder crops are bajra and jowar.
+                                The main sources of irrigation are canals and tube wells.
+
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <h1 style="text-align: center; color: black; font-size: 70px;">Questionaire Panel</h1>
+    <section class="banner" style="height: 33vh;">
+            <h2 style="margin-left: 2.4vh;">1- Want to get the information about best three crops of your District with the production by area of a particular season ? </h2>
+        <form action="/search" method="POST" style="width: 95vw;margin-left: 3vh;">
+            <select onchange="print_city('state', this.selectedIndex);m(this.selectedIndex);" id="sts" name="State"
+                class="form-control" required>
+                <option value="" selected="selected">Select State</option>
+            </select>
+            <select id ="state" onchange="print_season('season');" class="form-control" name="district" required style="display: none;">
+                    <option value="" selected="selected">Select District</option>
+            </select>
+            <select id ="season" class="form-control" onchange="document.getElementById('share').style.display='block'" name="season" required style="display: none;">
+                <option value="" selected="selected">Select Season</option>
+            </select>
+            <br>
+            <div class="row">
+                <div class="col-xs-12 col-md-3 offset-5">
+                    <button type="submit" class="submit-btn">submit</button>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <section class="banner" style="height: 55vh;">
+        <h2 style="margin-left: 2.4vh;">2- Know more about crop in your area </h2>
+            <form action="/searchbycrop" method="POST" style="width: 95vw;margin-left: 3vh;">
+                <input type="text" placeholder="state" style="display: none;" name="State" value="Hi" id="sts2">
+                <select onchange="print_city1('statecrop1', this.selectedIndex);m(this.selectedIndex);" id="stscrop1" name="StateA"
+                    class="form-control" required>
+                    <option value="" selected="selected">Select State</option>
+                </select>
+                <select id ="statecrop1" onchange="print_crop('crop');" class="form-control" name="districtA" required style="display: none;">
+                    <option value="" selected="selected">Select District</option>
+                </select>
+                <select id ="crop" class="form-control" name="cropA" onchange="document.getElementById('share_type').style.display='inline'" required style="display: none;">
+                    <option value="" selected="selected">Select Crop</option>
+                </select>
+                <!-- <div id="sharecrop1">Want to Share Your Area,  &nbsp;<a id="share1crop1" onclick="share1()">Click Here</a></div>
+                <div id="share_type" id="sharearea1" class="inputbox" required style="display: none;">
+                    <input type="text" id="area" onkeypress="share_check()" name="areaA" placeholder="Enter Area in hectare" value="">
+                </div> -->
+                <br>
+                <div class="row">
+                    <div class="col-xs-12 col-md-3 offset-5">
+                        <button type="submit" class="submit-btn">submit</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    <section class="users-feedback">
+        <h1 style="text-align: center;font-family:cursive">Other Farmers' reviews</h1>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="users-review">
+                        <p>Definately, a great place to decide about which crops should cultivate at which time.
+                        </p>
+                        <h5>Ram Kumar</h5>
+                        <small>Rajasthan</small>
+                    </div>
+                    <img class="rumble"
+                        src="https://cdn.downtoearth.org.in/library/large/2019-07-24/0.37377100_1563954075_gettyimages-498281885.jpg">
+                </div>
+
+                <div class="col-md-4">
+                    <div class="users-review">
+                        <p>Definately, a great place to decide about which crops should cultivate at which time.
+                        </p>
+                        <h5>Shyam Kumar</h5>
+                        <small>Maharastra</small>
+                    </div>
+                    <img class="rumble"
+                        src="https://img.fotocommunity.com/indian-farmer-4183b00e-41ea-4a54-af6c-b991a9eeef0a.jpg?height=1000">
+                </div>
+
+                <div class="col-md-4">
+                    <div class="users-review">
+                        <p>Definately, a great place to decide about which crops should cultivate at which time.
+                        </p>
+                        <h5>Hari Singh</h5>
+                        <small>Andaman & Nicobar Islands</small>
+                    </div>
+                    <img class="rumble"
+                        src="https://researchmatters.in/sites/default/files/styles/large_800w_scale/public/farmer-4365877_1920.jpg?itok=FUZXY9sO">
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="feedback">
+
+
+
+        <div class="container">
+            <div class="row">
+                <h1 class="h1h1">Share your problems with us</h1>
+            </div>
+            <div class="row">
+                <h4 class="h4h4" style="text-align:center">We'd love to hear from you!</h4>
+            </div>
+            <form method="POST" action="/">
+                <div class="row input-container">
+                    <div class="col-xs-12">
+                        <div class="styled-input wide">
+                            <input type="text" name="Name" required />
+                            <label>Name</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="styled-input">
+                            <input type="email" name="email" required />
+                            <label>Email</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="styled-input" style="float:right;">
+                            <input type="text" name="phonenumber" required />
+                            <label>Phone Number</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="styled-input wide">
+                            <textarea name="text" required></textarea>
+                            <label>Message</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <button type="submit" class="btnmsg">Send message</butto>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+    </section>
+    <script>
+        var state_arr = new Array('Andaman and Nicobar Islands', 'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chandigarh', 'Chhattisgarh', 'Dadra and Nagar Haveli', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jammu and Kashmir', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Puducherry', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal');
+        var s_a = new Array();
+        s_a[0] = "";
+        s_a[1] = ['NICOBARS', 'NORTH AND MIDDLE ANDAMAN', 'SOUTH ANDAMANS'];
+        s_a[2] = ['ANANTAPUR', 'CHITTOOR', 'EAST GODAVARI', 'GUNTUR', 'KADAPA', 'KRISHNA', 'KURNOOL', 'PRAKASAM', 'SPSR NELLORE', 'SRIKAKULAM', 'VISAKHAPATANAM', 'VIZIANAGARAM', 'WEST GODAVARI'];
+        s_a[3] = ['ANJAW', 'CHANGLANG', 'DIBANG VALLEY', 'EAST KAMENG', 'EAST SIANG', 'KURUNG KUMEY', 'LOHIT', 'LONGDING', 'LOWER DIBANG VALLEY', 'LOWER SUBANSIRI', 'NAMSAI', 'PAPUM PARE', 'TAWANG', 'TIRAP', 'UPPER SIANG', 'UPPER SUBANSIRI', 'WEST KAMENG', 'WEST SIANG'];
+        s_a[4] = ['BAKSA', 'BARPETA', 'BONGAIGAON', 'CACHAR', 'CHIRANG', 'DARRANG', 'DHEMAJI', 'DHUBRI', 'DIBRUGARH', 'DIMA HASAO', 'GOALPARA', 'GOLAGHAT', 'HAILAKANDI', 'JORHAT', 'KAMRUP', 'KAMRUP METRO', 'KARBI ANGLONG', 'KARIMGANJ', 'KOKRAJHAR', 'LAKHIMPUR', 'MARIGAON', 'NAGAON', 'NALBARI', 'SIVASAGAR', 'SONITPUR', 'TINSUKIA', 'UDALGURI'];
+        s_a[5] = ['ARARIA', 'ARWAL', 'AURANGABAD', 'BANKA', 'BEGUSARAI', 'BHAGALPUR', 'BHOJPUR', 'BUXAR', 'DARBHANGA', 'GAYA', 'GOPALGANJ', 'JAMUI', 'JEHANABAD', 'KAIMUR (BHABUA)', 'KATIHAR', 'KHAGARIA', 'KISHANGANJ', 'LAKHISARAI', 'MADHEPURA', 'MADHUBANI', 'MUNGER', 'MUZAFFARPUR', 'NALANDA', 'NAWADA', 'PASHCHIM CHAMPARAN', 'PATNA', 'PURBI CHAMPARAN', 'PURNIA', 'ROHTAS', 'SAHARSA', 'SAMASTIPUR', 'SARAN', 'SHEIKHPURA', 'SHEOHAR', 'SITAMARHI', 'SIWAN', 'SUPAUL', 'VAISHALI'];
+        s_a[6] = ['CHANDIGARH']
+        s_a[7] = ['BALOD', 'BALODA BAZAR', 'BALRAMPUR', 'BASTAR', 'BEMETARA', 'BIJAPUR', 'BILASPUR', 'DANTEWADA', 'DHAMTARI', 'DURG', 'GARIYABAND', 'JANJGIR-CHAMPA', 'JASHPUR', 'KABIRDHAM', 'KANKER', 'KONDAGAON', 'KORBA', 'KOREA', 'MAHASAMUND', 'MUNGELI', 'NARAYANPUR', 'RAIGARH', 'RAIPUR', 'RAJNANDGAON', 'SUKMA', 'SURAJPUR', 'SURGUJA'];
+        s_a[8] = ['DADRA AND NAGAR HAVELI'];
+        s_a[9] = ['NORTH GOA', 'SOUTH GOA'];
+        s_a[10] = ['AHMADABAD', 'AMRELI', 'ANAND', 'BANAS KANTHA', 'BHARUCH', 'BHAVNAGAR', 'DANG', 'DOHAD', 'GANDHINAGAR', 'JAMNAGAR', 'JUNAGADH', 'KACHCHH', 'KHEDA', 'MAHESANA', 'NARMADA', 'NAVSARI', 'PANCH MAHALS', 'PATAN', 'PORBANDAR', 'RAJKOT', 'SABAR KANTHA', 'SURAT', 'SURENDRANAGAR', 'TAPI', 'VADODARA', 'VALSAD'];
+        s_a[11] = ['AMBALA','BHIWANI','FARIDABAD','FATEHABAD','GURGAON','HISAR','JHAJJAR','JIND','KAITHAL','KARNAL','KURUKSHETRA','MAHENDRAGARH','MEWAT','PALWAL','PANCHKULA','PANIPAT','REWARI','ROHTAK','SIRSA','SONIPAT','YAMUNANAGAR'];
+        s_a[12] = ['BILASPUR','CHAMBA','HAMIRPUR','KANGRA','KINNAUR','KULLU','LAHUL AND SPITI','MANDI','SHIMLA','SIRMAUR','SOLAN','UNA'];
+        s_a[13] = ['ANANTNAG','BADGAM','BANDIPORA','BARAMULLA','DODA','GANDERBAL','JAMMU','KARGIL','KATHUA','KISHTWAR','KULGAM','KUPWARA','LEH LADAKH','POONCH','PULWAMA','RAJAURI','RAMBAN','REASI','SAMBA','SHOPIAN','SRINAGAR','UDHAMPUR'];
+        s_a[14] = ['BOKARO','CHATRA','DEOGHAR','DHANBAD','DUMKA','EAST SINGHBUM','GARHWA','GIRIDIH','GODDA','GUMLA','HAZARIBAGH','JAMTARA','KHUNTI','KODERMA','LATEHAR','LOHARDAGA','PAKUR','PALAMU','RAMGARH','RANCHI','SAHEBGANJ','SARAIKELA KHARSAWAN','SIMDEGA','WEST SINGHBHUM'];
+        s_a[15] = ['BAGALKOT','BANGALORE RURAL','BELGAUM','BELLARY','BENGALURU URBAN','BIDAR','BIJAPUR','CHAMARAJANAGAR','CHIKBALLAPUR','CHIKMAGALUR','CHITRADURGA','DAKSHIN KANNAD','DAVANGERE','DHARWAD','GADAG','GULBARGA','HASSAN','HAVERI','KODAGU','KOLAR','KOPPAL','MANDYA','MYSORE','RAICHUR','RAMANAGARA','SHIMOGA','TUMKUR','UDUPI','UTTAR KANNAD','YADGIR'];
+        s_a[16] = ['ALAPPUZHA','ERNAKULAM','IDUKKI','KANNUR','KASARAGOD','KOLLAM','KOTTAYAM','KOZHIKODE','MALAPPURAM','PALAKKAD','PATHANAMTHITTA','THIRUVANANTHAPURAM','THRISSUR','WAYANAD'];
+        s_a[17] = ['AGAR MALWA','ALIRAJPUR','ANUPPUR','ASHOKNAGAR','BALAGHAT','BARWANI','BETUL','BHIND','BHOPAL','BURHANPUR','CHHATARPUR','CHHINDWARA','DAMOH','DATIA','DEWAS','DHAR','DINDORI','GUNA','GWALIOR','HARDA','HOSHANGABAD','INDORE','JABALPUR','JHABUA','KATNI','KHANDWA','KHARGONE','MANDLA','MANDSAUR','MORENA','NARSINGHPUR','NEEMUCH','PANNA','RAISEN','RAJGARH','RATLAM','REWA','SAGAR','SATNA','SEHORE','SEONI','SHAHDOL','SHAJAPUR','SHEOPUR','SHIVPURI','SIDHI','SINGRAULI','TIKAMGARH','UJJAIN','UMARIA','VIDISHA'];
+        s_a[18] = ['AHMEDNAGAR','AKOLA','AMRAVATI','AURANGABAD','BEED','BHANDARA','BULDHANA','CHANDRAPUR','DHULE','GADCHIROLI','GONDIA','HINGOLI','JALGAON','JALNA','KOLHAPUR','LATUR','MUMBAI','NAGPUR','NANDED','NANDURBAR','NASHIK','OSMANABAD','PALGHAR','PARBHANI','PUNE','RAIGAD','RATNAGIRI','SANGLI','SATARA','SINDHUDURG','SOLAPUR','THANE','WARDHA','WASHIM','YAVATMAL'];
+        s_a[19] = ['BISHNUPUR','CHANDEL','CHURACHANDPUR','IMPHAL EAST','IMPHAL WEST','SENAPATI','TAMENGLONG','THOUBAL','UKHRUL'];
+        s_a[20] = ['EAST GARO HILLS','EAST JAINTIA HILLS','EAST KHASI HILLS','NORTH GARO HILLS','RI BHOI','SOUTH GARO HILLS','SOUTH WEST GARO HILLS','SOUTH WEST KHASI HILLS','WEST GARO HILLS','WEST JAINTIA HILLS','WEST KHASI HILLS'];
+        s_a[21] = ['AIZAWL','CHAMPHAI','KOLASIB','LAWNGTLAI','LUNGLEI','MAMIT','SAIHA','SERCHHIP'];
+        s_a[22] = ['DIMAPUR','KIPHIRE','KOHIMA','LONGLENG','MOKOKCHUNG','MON','PEREN','PHEK','TUENSANG','WOKHA','ZUNHEBOTO'];
+        s_a[23] = ['ANUGUL','BALANGIR','BALESHWAR','BARGARH','BHADRAK','BOUDH','CUTTACK','DEOGARH','DHENKANAL','GAJAPATI','GANJAM','JAGATSINGHAPUR','JAJAPUR','JHARSUGUDA','KALAHANDI','KANDHAMAL','KENDRAPARA','KENDUJHAR','KHORDHA','KORAPUT','MALKANGIRI','MAYURBHANJ','NABARANGPUR','NAYAGARH','NUAPADA','PURI','RAYAGADA','SAMBALPUR','SONEPUR','SUNDARGARH'];
+        s_a[24] = ['KARAIKAL', 'MAHE','PONDICHERRY','YANAM'];
+        s_a[25] = ['AMRITSAR','BARNALA','BATHINDA','FARIDKOT','FATEHGARH SAHIB','FAZILKA','FIROZEPUR','GURDASPUR','HOSHIARPUR','JALANDHAR','KAPURTHALA','LUDHIANA','MANSA','MOGA','MUKTSAR','NAWANSHAHR','PATHANKOT','PATIALA','RUPNAGAR','S.A.S NAGAR','SANGRUR','TARN TARAN'];
+        s_a[26] = ['AJMER', 'ALWAR', 'BANSWARA', 'BARAN', 'BARMER', 'BHARATPUR', 'BHILWARA', 'BIKANER', 'BUNDI', 'CHITTORGARH', 'CHURU', 'DAUSA', 'DHOLPUR', 'DUNGARPUR', 'GANGANAGAR', 'HANUMANGARH', 'JAIPUR', 'JAISALMER', 'JALORE', 'JHALAWAR', 'JHUNJHUNU', 'JODHPUR', 'KARAULI', 'KOTA', 'NAGAUR', 'PALI', 'PRATAPGARH', 'RAJSAMAND', 'SAWAI MADHOPUR', 'SIKAR', 'SIROHI', 'TONK', 'UDAIPUR'];
+        s_a[27] = ['EAST DISTRICT','NORTH DISTRICT','SOUTH DISTRICT','WEST DISTRICT'];
+        s_a[28] = ['ARIYALUR','COIMBATORE','CUDDALORE','DHARMAPURI','DINDIGUL','ERODE','KANCHIPURAM','KANNIYAKUMARI','KARUR','KRISHNAGIRI','MADURAI','NAGAPATTINAM','NAMAKKAL','PERAMBALUR','PUDUKKOTTAI','RAMANATHAPURAM','SALEM','SIVAGANGA','THANJAVUR','THE NILGIRIS','THENI','THIRUVALLUR','THIRUVARUR','TIRUCHIRAPPALLI','TIRUNELVELI','TIRUPPUR','TIRUVANNAMALAI','TUTICORIN','VELLORE','VILLUPURAM','VIRUDHUNAGAR'];
+        s_a[29] = ['ADILABAD','HYDERABAD','KARIMNAGAR','KHAMMAM','MAHBUBNAGAR','MEDAK','NALGONDA','NIZAMABAD','RANGAREDDI','WARANGAL'];
+        s_a[30] = ['DHALAI','GOMATI','KHOWAI','NORTH TRIPURA','SEPAHIJALA','SOUTH TRIPURA','UNAKOTI','WEST TRIPURA'];
+        s_a[31] = ['AGRA','ALIGARH','ALLAHABAD','AMBEDKAR NAGAR','AMETHI','AMROHA','AURAIYA','AZAMGARH','BAGHPAT','BAHRAICH','BALLIA','BALRAMPUR','BANDA','BARABANKI','BAREILLY','BASTI','BIJNOR','BUDAUN','BULANDSHAHR','CHANDAULI','CHITRAKOOT','DEORIA','ETAH','ETAWAH','FAIZABAD','FARRUKHABAD','FATEHPUR','FIROZABAD','GAUTAM BUDDHA NAGAR','GHAZIABAD','GHAZIPUR','GONDA','GORAKHPUR','HAMIRPUR','HAPUR','HARDOI','HATHRAS','JALAUN','JAUNPUR','JHANSI','KANNAUJ','KANPUR DEHAT','KANPUR NAGAR','KASGANJ','KAUSHAMBI','KHERI','KUSHI NAGAR','LALITPUR','LUCKNOW','MAHARAJGANJ','MAHOBA','MAINPURI','MATHURA','MAU','MEERUT','MIRZAPUR','MORADABAD','MUZAFFARNAGAR','PILIBHIT','PRATAPGARH','RAE BARELI','RAMPUR','SAHARANPUR','SAMBHAL','SANT KABEER NAGAR','SANT RAVIDAS NAGAR','SHAHJAHANPUR','SHAMLI','SHRAVASTI','SIDDHARTH NAGAR','SITAPUR','SONBHADRA','SULTANPUR','UNNAO','VARANASI'];
+        s_a[32] = ['ALMORA','BAGESHWAR','CHAMOLI','CHAMPAWAT','DEHRADUN','HARIDWAR','NAINITAL','PAURI GARHWAL','PITHORAGARH','RUDRA PRAYAG','TEHRI GARHWAL','UDAM SINGH NAGAR','UTTAR KASHI'];
+        s_a[33] = ['24 PARAGANAS NORTH','24 PARAGANAS SOUTH','BANKURA','BARDHAMAN','BIRBHUM','COOCHBEHAR','DARJEELING','DINAJPUR DAKSHIN','DINAJPUR UTTAR','HOOGHLY','HOWRAH','JALPAIGURI','MALDAH','MEDINIPUR EAST','MEDINIPUR WEST','MURSHIDABAD','NADIA','PURULIA'];
+        var crop = new Array("Rice","Sugarcane","Arecanut","Other Kharif pulses","Black pepper","Cashewnut","Dry chillies","Dry ginger","Maize","Urad","Banana","Coconut","Moong(Green Gram)","Sweet potato","Turmeric","Tapioca","other oilseeds","Arhar/Tur","Groundnut","Sunflower","Bajra","Brinjal","Cabbage","Castor seed","Coriander","Cotton(lint)","Cowpea(Lobia)","Gram","Grapes","Horse-gram","Korra","Jowar","Lemon","Linseed","Mango","Masoor","Mesta","Onion","Papaya","Pome Granet","Potato","Ragi","Samai","Sapota","Sesamum","Small millets","Soyabean","Tobacco","Tomato","other misc. pulses","Other  Rabi pulses","Rapeseed &Mustard","Safflower","Wheat","Beans & Mutter(Vegetable)","Citrus Fruit","Cucumber","Bhindi","Orange","Other Fresh Fruits","Other Vegetables","Pome Fruit","other fibres","Peas  (vegetable)","Niger seed","Bottle Gourd","Sannhamp","Varagu","Garlic","Ginger","Oilseeds total","Pulses total","Paddy","Jute","Blackgram","Peas & beans (Pulses)","Pineapple","Barley","Khesari","Guar seed","Moth","Other Cereals & Millets","Cond-spcs other","Turnip","Carrot","Redish","Arcanut (Processed)","Atcanut (Raw)","Cardamom","Cashewnut Processed","Cashewnut Raw","Bitter Gourd","Drum Stick","Jack Fruit","Pump Kin","Rubber","Snak Guard","Tea","Coffee","Cauliflower","Other Citrus Fruit","Water Melon","Total foodgrain","Kapas","Colocosia","Lentil","Bean","Jobster","Perilla","Rajmash Kholar","Ricebean (nagadal)","Ash Gourd","Beet Root","Lab-Lab","Ribed Guard","Yam","Apple","Peach","Pear","Plums","Litchi","Ber","Other Dry Fruit","Jute & mesta")
+        var season_arr = new Array('Autumn', 'Kharif', 'Rabi', 'Whole Year', 'Summer', 'Winter')
+        function print_state(state_id) {
+            
+            var option_str = document.getElementById(state_id);
+            option_str.length = 0;
+            option_str.options[0] = new Option('Select State', '');
+            option_str.selectedIndex = 0;
+            for (var i = 0; i < state_arr.length; i++) {
+                option_str.options[option_str.length] = new Option(state_arr[i], state_arr[i]);
+            }
+        }
+
+        function print_city(city_id, city_index) {
+            document.getElementById('state').style.display="block"
+            var option_str = document.getElementById(city_id);
+            option_str.length = 0;	// Fixed by Julian Woods
+            option_str.options[0] = new Option('Select District', '');
+            option_str.selectedIndex = 0;
+            var city_arr = s_a[city_index];
+            for (var i = 0; i < city_arr.length; i++) {
+                option_str.options[option_str.length] = new Option(city_arr[i], city_arr[i]);
+            }
+        }
+        function print_season(season_id) {
+            // given the id of the <select> tag as function argument, it inserts <option> tags
+            var option_str = document.getElementById(season_id);
+            document.getElementById('season').style.display="block"
+            option_str.length = 0;
+            option_str.options[0] = new Option('Select Season', '');
+            option_str.selectedIndex = 0;
+            for (var i = 0; i < season_arr.length; i++) {
+                option_str.options[option_str.length] = new Option(season_arr[i], season_arr[i]);
+            }
+        }
+        function print_city1(city_id, city_index) {
+            document.getElementById('statecrop1').style.display="block"
+            var option_str = document.getElementById(city_id);
+            option_str.length = 0;	// Fixed by Julian Woods
+            option_str.options[0] = new Option('Select District', '');
+            option_str.selectedIndex = 0;
+            var city_arr = s_a[city_index];
+            for (var i = 0; i < city_arr.length; i++) {
+                option_str.options[option_str.length] = new Option(city_arr[i], city_arr[i]);
+            }
+        }
+        function print_crop(crop_id) {
+            // given the id of the <select> tag as function argument, it inserts <option> tags
+                document.getElementById('crop').style.display="block"
+            var option_str = document.getElementById(crop_id);
+            option_str.length = 0;
+            option_str.options[0] = new Option('Select crop', '');
+            option_str.selectedIndex = 0;
+            for (var i = 0; i < crop.length; i++) {
+                option_str.options[option_str.length] = new Option(crop[i], crop[i]);
+            }
+        }
+        print_state("sts");
+        print_state("stscrop1");
+        function share(){
+            document.getElementById('share').style.display='none'
+            document.getElementById('share_type').style.display='inline'
+        }
+        function share_check()
+        {
+            if (event.charCode >= 48 && event.charCode <= 57)
+            {
+                return event.charCode >= 48 && event.charCode <= 57
+            }
+            else if(event.charCode == 46){
+                return event.charCode == 46
+            }
+            else{
+                alert("Enter only number")
+                return event.charCode >= 48 && event.charCode <= 57
+            }
+        }
+
+    </script>
+</body>
+
+</html>

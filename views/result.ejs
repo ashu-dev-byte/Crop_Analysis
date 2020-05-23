@@ -1,0 +1,120 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Best Crops</title>
+    <style>
+        body{
+            background: linear-gradient(to right, orange, brown);
+        }
+    </style>
+</head>
+<body>
+    <div style="position: absolute;width: 98vw;height: 200vh;">
+        <div style="position: absolute;left:0 px;top: 0px; width: 95vw;margin-bottom: 5px;">
+            <h1 style="text-align: center; color: wheat;">Crop You can Grow</h1>
+            <h3 style="text-align: center; color: wheat;">In <%= userinfo.district %>, <%= userinfo.State %></h3>    
+            <h3 style="text-align: center; color: wheat;">In <%= userinfo.season %> Season</h3>
+            <section style="padding-left: 30%; padding-right: 50%; padding-top: 50px;transform: translateX(7vw);">
+                    <table style="border: 1px solid black; width: 550px; height: 300px; background-color: wheat;">
+                <th  >
+                <td  style="border: 1px  solid black; font-size: x-large; text-align: center; "><b>Crop</b> &nbsp;&nbsp;&nbsp;</td>
+                <td  style="border: 1px  solid rgb(2, 1, 1); font-size:x-large; text-align: center; "><b>Production / Area</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <!-- <td  style="border: 1px  solid black; "><b>Average Profit  in thousand</b></td> -->
+                </th>
+                <% var arr=[""] 
+            var n=0 
+            var t,m=0
+            if(result.length >= 3){
+                t=3
+            }
+            else{
+                t=result.length
+            }
+            for(var i = 0;i < t;i++) { 
+                m = 1
+                if(arr. indexOf(result[i].Crop) == -1 ) { %>
+                    
+                <!-- <% console.log(result[i]) %> -->
+                <tr>
+                    <td ></td>
+                    <td style="border: 1px  solid black;font-size:large; text-align: center; "><%= result[i].Crop %>&nbsp;&nbsp;&nbsp;</td>
+                    <td style="border: 1px  solid black; font-size:large; text-align: center; "><%= (parseFloat(result[i].Production) * 100.00/parseFloat(result[i].Area)).toFixed(2) %> %</td>
+                </tr>
+                <% arr.push(result[i].Crop) 
+                    n += 1 } 
+                    console.log(result[i].P_A)
+                }
+                if(m==0){ %>
+            </table>
+            </section>
+            <h1 style="text-align: center;">Sorry! no crop found :(</h1>
+            <% } console.log(n) %>
+        </div>
+
+        <div style="position: absolute;left:640px;top: 58.5vh; width: 95vw;">
+                <h1 style="font-size: 50px;margin-bottom:-25px !important;text-decoration: underline;">Covid-19 Check</h1>
+                <h4 style="font-size: 23px;position: relative;left:1.35em">Details about your area:</h4>
+                <br><br>
+            <% if(apidata.length != 0) { %>    
+            <ul style="font-size:28px;margin-top: -28px;">
+                <li> <strong>Active Cases:</strong> &nbsp; <%= apidata[0] %></li>
+                <li> <strong> Deceased People:</strong> &nbsp; <%= apidata[1] %></li>
+                <li> <strong> Confirmed Cases: &nbsp;</strong> <%= apidata[2] %></li>
+                <li> <strong> Recovered People: &nbsp;</strong> <%= apidata[3] %> </li>
+            </ul>
+            <div style="font-size:36px;font-weight:bolder;margin-top: -17px;position: relative;left:-1em">
+                <% if (apidata[2] >= 50) { %>
+                <p> Your region is in <u>Red Zone.</u> </p>
+                <% } else if (apidata[2] >= 25) { %>
+                <p> Your region is in <u>Orange Zone.</u> </p>
+                <% } else { %>
+                <p> Your region is in <u>Green Zone.</u> </p>
+                <% } %>
+            </div>
+            <% } else { %>
+            <p style="font-size:36px;font-weight:bolder;margin-top: -17px;position: relative;left:-1em">Sorry! Currently No data is</p>
+            <p style="font-size:36px;font-weight:bolder;margin-top: -17px;position: relative;left:-1em;top:-0.5em"> available for your region.</p>
+            <% } %>
+            <div>
+                <ul style="font-size: 27px;position: relative;left:-1.4em"> 
+                    <li>STAY home</li>
+                    <li>KEEP a safe distance</li>
+                    <li>WASH hands regularly</li>
+                    <li>COVER your cough</li>
+                    <li>SICK? Call the helpline</li>
+                    <li>Helpline Number: +1764765</li>
+                </ul>
+                <p style="font-size: 24px;position: relative;left:-1.4em">
+                    Government is providing farmers with various<br>
+                    aids and facilities in this dire situation code.<br>
+                    To know more, visit the links mentioned below.<br>
+                    Be Safe and healthy.<br>
+                </p>
+                <ul style="font-size: 24px;position: relative;left:-2.8em"> 
+                    <li>
+                        India Passes INR 170K Cr Covid-19 Package<br>
+                        For Farmers, Daily Wagers <a style="text-decoration: none;" href="https://inc42.com/buzz/india-announces-inr-170k-cr-relief-package-for-farmers-daily-wagers/" target="_blank"> &nbsp;Click here</a></li>
+                    <li>
+                        Government Disburses Rs 15,841 Crore Under <br>
+                            PM-KISAN During Lockdown
+                        <a style="text-decoration: none;" href="https://www.bloombergquint.com/economy-finance/govt-disburses-rs-15-841-cr-to-7-92-cr-farmers-under-pm-kisan-during-lockdown" target="_blank"> &nbsp;Click here</a>
+                    </li>
+                    <li>
+                        10 Government Measures To Help<br>
+                        Poor Through Lockdown
+                        <a style="text-decoration: none;" href="https://www.bloombergquint.com/economy-finance/10-government-measures-to-help-poor-through-lockdown" target="_blank"> &nbsp;Click here</a> 
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>  
+
+
+    <script>
+    </script>
+</body>
+</html>

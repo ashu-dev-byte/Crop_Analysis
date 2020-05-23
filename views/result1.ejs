@@ -1,0 +1,126 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crop Information</title>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" rel="stylesheet" />
+    <style>
+        body {
+            background: linear-gradient(to right, orange, brown);
+        }
+
+        #map {
+            position: absolute;
+            border: 1px solid black;
+            margin-left: 20%;
+            margin-bottom: 20%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center; color: wheat;">Crop - <%= userinfo.cropA %> Having Max Price</h1>
+    <h3 style="text-align: center; color: wheat;">In <%= userinfo.districtA %>, <%= userinfo.StateA %></h3>
+    <% if(result.length == 0){ %>
+    <br>
+    <br>
+    <br>
+    <h1 style="text-align: center;">Sorry! No crop's found.</h1>
+    <% } 
+        else{ %>
+
+    <h3 style="text-align: center; color: wheat;">In <%= result[0].Season %></h3>
+
+    <br>
+    <br>
+    <h2 style="text-align: center;">Production Per Area - <%= result[0].P_A.toFixed(2)  %> Hectares </h1><br>
+        <h2 style="text-align: center;">Soil Type in the Area is - <%= result[0].Soil%></h1> <br>
+            <h2 style="text-align: center;">Moisture Content of Soil in the Area is -
+                <%= result[0].moisture_content.toFixed(2) %>% </h1><br>
+                <h2 style="text-align: center;">Transport Cost to nearest Market is - &#8377
+                    <%= result[0].transport_cost.toFixed(2) %> </h1><br>
+                    <h2 style="text-align: center;">Current Market Price of the crop is - &#8377
+                        <%= result[0].price.toFixed(2) %> </h1>
+
+                        <br><br><br>
+                        <script
+                            src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
+                        <link rel="stylesheet"
+                            href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
+                            type="text/css" />
+
+
+                        <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+                        <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+                        <h1 style="text-align: center;"> Know Your Area </h1>
+
+                        <button onclick="getLocation()" style="margin-left: 48%; margin-bottom: 50%;" id="butt1">Try
+                            It</button>
+
+                        <div id="map" style=" width: 900px;height: 500px; display: none;">
+
+                        </div>
+                        <% } %>
+                        <script>
+
+
+                            function getLocation() {
+                                if (navigator.geolocation) {
+                                    navigator.geolocation.getCurrentPosition(showPosition);
+                                } else {
+                                    console.log("Geolocation is not supported by this browser.");
+                                }
+                            }
+                            function showPosition(position) {
+                                document.getElementById('butt1').style.display = 'none';
+                                document.getElementById('map').style.display = 'block';
+                                loadmap(position.coords.latitude, position.coords.longitude);
+                            }
+
+
+                            function loadmap(lat, long) {
+                                //var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
+                                //console.log(mapboxgl);
+                                mapboxgl.accessToken = 'pk.eyJ1IjoiaW12cjciLCJhIjoiY2s4azV2dGZjMDI3aTNtcmpqMDR4YTlxaiJ9.UjqoCIiRWi61nVtidhkOmQ';
+                                var map = new mapboxgl.Map({
+                                    container: 'map',
+                                    style: 'mapbox://styles/mapbox/streets-v11',
+                                    center: [lat,long],
+                                //     pitch: 60, // pitch in degrees
+                                // bearing: -60,
+                                    zoom: 15
+                                });
+                                //console.log("Valuas are -")
+                                console.log(lat);
+                                console.log(long);
+
+                                map.addControl(
+                                    new MapboxGeocoder({
+                                        accessToken: mapboxgl.accessToken,
+                                        mapboxgl: mapboxgl,
+                                        zoom: 14,
+                                        placeholder: 'Enter search e.g. Kanpur',
+                                    })
+                                );
+                                map.addControl(
+                                    new mapboxgl.GeolocateControl({
+                                        positionOptions: {
+                                            enableHighAccuracy: true
+                                        },
+                                        trackUserLocation: true
+                                    })
+                                );
+                                map.addControl(new mapboxgl.FullscreenControl());
+                            }
+                        </script>
+
+
+
+</body>
+
+</html>
